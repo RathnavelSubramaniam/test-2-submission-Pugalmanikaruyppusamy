@@ -1,0 +1,66 @@
+
+
+import {useState }from "react";
+
+function App()
+ {
+    const [items,setItems] = useState([]);
+    const [text , setText] = useState("");
+ 
+
+ 
+  function addItem() {
+    if (text !== "") {
+        setItems ([...items,text]);
+         setText ( "" );
+    }}
+
+     function deleteItem(index) {
+   const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+  }
+
+  return (
+    <div className="box">
+        <h2>MY To-Do-List</h2>
+        
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter Your Task"
+      /> 
+      <button onClick={addItem}>Add</button>
+    
+       <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item}
+            <span style={{cursor:'pointer',margin:"20px"}} onClick={() => deleteItem(index)}>✖️</span>
+          </li>
+        ))}
+      </ul>
+        
+
+    </div>
+  );
+
+ }
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
